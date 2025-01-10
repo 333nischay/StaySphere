@@ -1,0 +1,240 @@
+<% layout("./layouts/boilerplate") %>
+  <body>
+    <!-- <form method="GET" action="/listings/new">
+      <button>Create New Listing</button>
+    </form> -->
+    <style>
+        .dropdown {
+          display: none;
+        }
+      @media (max-width: 768px) {
+        #filters {
+          justify-content: center;
+        }
+      }
+      @media (max-width: 890px) {
+        .filter{
+          font-size: 0.3rem;
+        }
+        .filter > div > i {
+          font-size: 0.3rem;
+        }
+        .tax-switch, .form-check-label, .form-check-input {
+          font-size: 0.5rem;
+        }
+      }
+  .dropdown-menu li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .dropdown-menu li div {
+    margin-right: 5px;
+  }
+
+  .dropdown-menu li p {
+    margin: 0;
+  }
+
+      @media(max-width: 842px) {
+        .filter{
+          display: none;
+        }
+       .dropdown {
+          display: block;
+        }
+      }
+     </style>     
+
+        <div id="filters" class="d-flex flex-wrap justify-content-between">
+          <!-- /* dropdown menu */ -->
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="scrollableDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Scrollable Dropdown
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="scrollableDropdown" style="max-height: 200px; overflow-y: auto; width: 100%;">
+              <li>                
+                <form action="/category/trending" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-fire" style="font-size: 0.8rem; margin-bottom: 3px; color: orange;"></i></div>
+                      <div><span style="font-size: 0.8rem; color: black;">Trending</span></div>
+                    </div>
+                  </button></form>
+              <li>                
+                <form action="/category/rooms" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-bed" style="font-size: 0.8rem; margin-bottom: 3px"></i></div>
+                      <div><span style="font-size: 0.8rem; color: black;">Rooms</span></div>
+                    </div>
+                  </button></form>                
+            </li>
+              <li>
+                <form action="/category/iconic-cities" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-city" style="font-size: 0.8rem; margin-bottom: 3px; color: grey;"></i></div>
+                      <div><span style="font-size: 0.8rem; color:black">Iconic Cities</span></div>
+                    </div>
+                  </button></form>
+            </li>
+              <li>
+                <form action="/category/mountains" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-mountain" style="font-size: 0.8rem; margin-bottom: 3px; color: brown;"></i></div>
+                      <div><span style="font-size: 0.8rem; color: black;">Mountains</span></div>
+                    </div>
+                  </button></form>
+            </li>
+              <li>
+                <form action="/category/sea-facing" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-umbrella-beach" style="font-size: 0.8rem; margin-bottom: 3px; color: rgba(240, 94, 21, 0.816);"></i></div>
+                      <div><span style="font-size: 0.8rem; color: black;">Sea Facing</span></div>
+                    </div>
+                  </button></form>               
+            </li>
+              <li>
+                form action="/category/villa" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-place-of-worship" style="font-size: 0.8rem; margin-bottom: 3px; color: plum;"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Villa</span></div>
+                </div>
+              </button></form>
+            </li>
+              <li>
+                <form action="/category/swimming-pool" method="GET">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                      <div><i class="fa-solid fa-person-swimming" style="font-size: 0.8rem; margin-bottom: 3px; color: blue;"></i></div>
+                      <div><span style="font-size: 0.8rem;color: black;">Swimming Pool</span></div>
+                    </div>
+                  </button></form>
+            </li>
+            </ul>
+            </div>
+          
+          <!-- the sub-navbar for listings page -->
+          <div class="filter">
+            <form action="/category/trending" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-fire" style="font-size: 0.8rem; margin-bottom: 3px; color: orange;"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Trending</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/rooms" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-bed" style="font-size: 0.8rem; margin-bottom: 3px"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Rooms</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/iconic-cities" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-city" style="font-size: 0.8rem; margin-bottom: 3px; color: grey;"></i></div>
+                  <div><span style="font-size: 0.8rem; color:black">Iconic Cities</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/mountains" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-mountain" style="font-size: 0.8rem; margin-bottom: 3px; color: brown;"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Mountains</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/sea-facing" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-umbrella-beach" style="font-size: 0.8rem; margin-bottom: 3px; color: rgba(240, 94, 21, 0.816);"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Sea Facing</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/villa" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-place-of-worship" style="font-size: 0.8rem; margin-bottom: 3px; color: plum;"></i></div>
+                  <div><span style="font-size: 0.8rem; color: black;">Villa</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="filter">
+            <form action="/category/swimming-pool" method="GET">
+              <button type="submit" class="btn btn-link" style="text-decoration: none; padding: 0; border: none; background: none;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div><i class="fa-solid fa-person-swimming" style="font-size: 0.8rem; margin-bottom: 3px; color: blue;"></i></div>
+                  <div><span style="font-size: 0.8rem;color: black;">Swimming Pool</span></div>
+                </div>
+              </button></form>
+          </div>
+          <div class="tax-switch">
+            <div class="form-check-reverse form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault" style="font-size: 0.8rem;">Include Taxes</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div style="margin-top: 50px;">
+          <h3 style="margin-bottom: 13px;"><u>Sea Facing</u></h3>
+          <%- include("../includes/flash.ejs") %>
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 justify-content-center" style="z-index: 0;">
+      <% for(let listing of allListings) { %>
+        <% if(listing.category == "Sea Facing") {%>
+      <a href="/listings/<%= listing._id %>">
+        <div class="card" style="border: 1px solid black;">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing-image" style="height: 20rem">
+          <div class="card-img-overlay"></div>
+          <div class="card-body text-start">
+          <p class="card-text">
+            <div class="with-gst"><b><%= listing.title %></b> <br>&#8377;<%= listing.price ? (listing.price + (listing.price * 0.18)).toLocaleString("en-IN") : 'N/A' %> / Night <i>with GST</i></div>  
+            <div class="without-gst"><b><%= listing.title %></b> <br>&#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %> / Night </div>
+          </p>
+          </div>
+        </div>
+      </a>
+      <% }} %>
+    </div>
+  </div>
+    <script>
+     let toggle = document.getElementById('flexSwitchCheckDefault');
+      let withGst = document.querySelectorAll('.with-gst');
+      let withoutGst = document.querySelectorAll('.without-gst');
+
+      toggle.addEventListener('change', () => {
+        if(toggle.checked) {
+          withGst.forEach((element) => {
+            element.style.display = 'block';
+          });
+          withoutGst.forEach((element) => {
+            element.style.display = 'none';
+          });
+        } else {
+          withGst.forEach((element) => {
+            element.style.display = 'none';
+          });
+          withoutGst.forEach((element) => {
+            element.style.display = 'block';
+          });
+        }
+      });
+    </script>
+  </body>

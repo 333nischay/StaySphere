@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<%- include("../includes/flash.ejs") %>
+<div class="row">
+    <div class="col-8 offset-2">
+      <div class="mb-3 text-start">
+        <h3>SignUp to StaySphere</h3>
+      </div>
+        <form method="POST" action="/signup" novalidate class="needs-validation" style="margin-bottom: 95px;">
+            <div class="mb-3 text-start">
+                <label for="username" class="form-label">Username</label>
+                <input name="username" type="text" class="form-control" required />
+                <div class="valid-feedback">
+                    Username Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Enter a valid username
+                </div>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="email" class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" required />
+                <div class="valid-feedback">
+                    Email Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Enter a valid email
+                </div>
+            </div>
+            <div class="mb-3 text-start">
+                <label for="password" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" required />
+                <div class="valid-feedback">
+                    Password Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Enter a Unique password
+                </div>
+            </div>
+            <div class="mb-3 text-end">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>

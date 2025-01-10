@@ -1,0 +1,178 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container-fluid">
+  <%- include("./includes/flash.ejs") %>
+  <div class="row">
+    <div class="col-8 offset-2 text-start">
+      <br>
+      <h3><%= listing.title %></h3>
+      <br>
+    </div>
+    <div class="card col-6 offset-2">
+      <img src="<%= listing.image.url%>" class="card-img-top show-img" alt="Image" style="object-fit: cover; width: 100%; height: 300px;" data-bs-toggle="modal" data-bs-target="#imageModal">
+      <div class="card-body">
+        <% if(listing.owner && listing.owner.username) { %>
+        <p class="card-text text-start"><b>Owned by: </b><i><%= listing.owner.username %></i></p>
+        <% } %>
+        <ul class="text-start">
+          <br>
+          <li><%= listing.description %></li>
+          <br>
+          <li style="display: list-item; list-style-position: outside;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <b>Price</b> - <div class="noTax">&#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> Per Night</div> 
+              <div class="tax">&#8377; <%= listing.price ? (listing.price + (listing.price * 0.18)).toLocaleString("en-IN") : "N/A" %> Per Night</div>
+              <div class="form-check form-switch tax-inclusion" style="margin-left: auto;">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Include taxes</label>
+              </div>
+            </div>
+          </li>
+               
+          <br>
+          <li><b>Category</b>- <%= listing.category %></li>
+          <br>
+          <li><b>Location</b> - <%= listing.location %></li>
+          <br>
+          <li><b>Country</b> - <%= listing.country %></li>
+        </ul>
+        <% if(listing.owner && listing.owner.username) { %>
+         <% if(currUser && currUser._id.equals(listing.owner._id)){ %> <!--  here res.locals.currUser is not mentioned because it is already mentioned in the app.js file and it is a middleware and this is a res page so it is already there -->
+        <br>
+        <div class="d-flex mt-3"><a href="/listings/<%= listing._id %>/edit" class="btn add-btn">Edit</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+            <button class="btn btn-dark">Delete</button>
+          </form>
+        </div>
+         <% } }%>     
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- //review section -->
+     <% if(currUser){ %>
+    <div class="col-8 offset-2 text-start">
+      <h3 class="text-start">Leave a Review</h3>
+      <form class="mb-3 mt-3 needs-validation" method="POST" action="/listings/<%= listing._id %>/reviews" novalidate>
+        <div class="mb-3 mt-3 text-start">
+          <label id="rating" for="rating" class="form-label">Rating</label>
+          <fieldset class="starability-coinFlip">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+        </div>
+
+        <div class="mb-3 mt-3 text-start">
+          <label for="review" class="form-label">Comment</label>
+          <textarea name="review[comment]" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="mb-3 mt-3 text-start">
+          <button class="btn btn-outline-success btn-sm">Submit</button>
+        </div>
+      </form>
+    </div>
+    <hr>
+    <% } %>
+    <div class="col-8 offset-2 text-start">
+      <h3>All Reviews</h3>
+      <div class="row mt-3 mb-3">
+      <% if (typeof allListingReviews !== 'undefined' && allListingReviews.length > 0) { %>
+        <% for (let i = 0; i < allListingReviews.length; i += 2) { %>
+        <div class="row">
+          <% for (let j = i; j < i + 2 && j < allListingReviews.length; j++) { %>
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm border-0">
+            <!-- Card Header -->
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0 ms-0 text-start">@<%= allListingReviews[j].author.username %></h5>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body bg-white">
+              <p class="starability-result card-text text-start mt-3 ms-3" data-rating="<%= allListingReviews[j].rating %>"></p>            
+              <p class="card-text text-start mt-3 ms-3"><%= allListingReviews[j].comment %></p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+              <small class="text-muted text-end" style="margin-left: auto; margin-bottom: 5px; margin-right: 5px;">
+              <%= new Date(allListingReviews[j].date).toLocaleDateString() %>
+              </small>
+              </div>
+            </div>
+            <!-- Card Footer -->
+            <% if(currUser && currUser._id.equals(allListingReviews[j].author._id)){ %>
+              <div class="card-footer bg-white text-end shadow-sm py-1">
+              <form method="post" action="/listings/<%= listing._id %>/reviews/<%= allListingReviews[j]._id %>?_method=DELETE" class="d-inline">
+                <button class="btn btn-outline-danger btn-sm mb-1 me-2">Delete</button>
+              </form>
+              </div>
+            <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+        <% if(!currUser){ %>
+          <div class="alert alert-info" role="alert">
+            Login or SignUp to leave a review!
+          </div>
+          <% } %>
+      <% } else { %>
+        <% if(!currUser){ %>
+        <div class="alert alert-info" role="alert">
+          No reviews yet.
+          Login to leave a review!
+        </div>
+        <% } else { %>
+        <div class="alert alert-info" role="alert">
+          No reviews yet. Be the first to leave a review!
+        </div>
+        <% } %>
+      <% } %>
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="imageModalLabel"><%= listing.title %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body"><img src="<%= listing.image.url %>" class="img-fluid" alt="Image" style="width: 100%; height: auto;"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let toggle = document.getElementById('flexSwitchCheckDefault');
+   let withGst = document.querySelectorAll('.tax');
+   let withoutGst = document.querySelectorAll('.noTax');
+
+   toggle.addEventListener('change', () => {
+     if(toggle.checked) {
+       withGst.forEach((element) => {
+         element.style.display = 'block';
+       });
+       withoutGst.forEach((element) => {
+         element.style.display = 'none';
+       });
+     } else {
+       withGst.forEach((element) => {
+         element.style.display = 'none';
+       });
+       withoutGst.forEach((element) => {
+         element.style.display = 'block';
+       });
+     }
+   });
+ </script>

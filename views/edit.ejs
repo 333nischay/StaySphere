@@ -1,0 +1,128 @@
+<!-- <% layout("/layouts/boilerplate") %> //this is possilbe because of the ejs-mate package
+<div class="row"> -->
+  <div class="col-8 offset-2">
+    <%- include("./includes/flash.ejs") %>
+    <br>
+    <div class="mb-3 text-start">
+      <h3>Edit your Listing</h3>
+    </div>
+    <!-- //listing is the object that we are passing from the controller -->
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+      <!-- //title -->
+      <div class="mb-3 text-start">
+        <label for="title" class="form-label">Title</label>
+        <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required />
+        <div class="valid-feedback">
+         Title Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Enter a valid title
+        </div>
+      </div>
+      <!-- //description -->
+      <div class="mb-3 text-start">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+        <div class="valid-feedback">
+          Description Looks good!
+         </div>
+         <div class="invalid-feedback">
+          Enter a valid description
+         </div>
+      </div>
+      <!-- //image -->
+      <div class="mb-3 text-start">
+        <label for="image" class="form-label">Image</label>
+        <br>
+        <img id="displayImage" src="<%= originalImageUrl %>" alt="image" style="max-width: 300px; max-height: 300px; object-fit: cover; border-width: 5px; border-color: antiquewhite ;border-radius: 20px;">
+        <br>
+        <br>
+        <input
+        name="listing[image]"
+        type="file"
+        class="form-control"
+        onchange="previewImage(event)"
+      />
+      </div>
+      <script>
+        function previewImage(event) {
+          const reader = new FileReader();
+          reader.onload = function(){
+        const output = document.getElementById('displayImage');
+        output.src = reader.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      </script>
+      <!-- //The function begins by creating a new instance of FileReader, a built-in JavaScript object that allows web applications to asynchronously read the contents of files (such as images) stored on the user's computer. The FileReader object is used to read the file data and convert it into a format that can be displayed in the browser.
+
+      Within the previewImage function, the onload event handler of the FileReader instance is defined. This handler is a function that will be executed once the file has been successfully read. Inside this handler, the code retrieves an HTML element with the ID displayImage using document.getElementById. This element is expected to be an <img> tag where the selected image will be displayed.
+      
+      The src attribute of the output element (the <img> tag) is then set to the result of the FileReader operation, which is the data URL representing the file's contents. This effectively updates the image source to the newly selected file, allowing the user to see a preview of the image they have chosen.
+      
+      Finally, the readAsDataURL method of the FileReader instance is called with the selected file (accessed via event.target.files[0]) as its argument. This method reads the file and triggers the onload event once the reading is complete, thus displaying the image preview. -->
+      <!-- //price -->
+       <div class="row">
+      <div class="mb-3 text-start col-md-4">
+        <label for="price" class="form-label">Price</label>
+        <input name="listing[price]" value="<%= listing.price %>" type="text" pattern="\d+" class="form-control" required/>
+        <div class="valid-feedback">
+          good!
+         </div>
+         <div class="invalid-feedback">
+          Enter a valid price
+         </div>
+      </div>
+
+      <!-- //category -->
+      
+      <div class="mb-3 text-start col-md-4">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-control form-select" id="category" name="listing[category]" required>
+          <option value="" disabled selected style="font-size: small;"> <%=listing.category%> </option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category %>"><%= category %></option>
+          <% }) %>
+        </select>
+      </div>
+    </div>
+      <!-- //country -->
+      <div class="mb-3 text-start">
+        <label for="country" class="form-label">Country</label>
+        <input
+        name="listing[country]"
+        value="<%= listing.country %>"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="valid-feedback">
+        good!
+       </div>
+       <div class="invalid-feedback">
+        Enter a valid country
+       </div>
+      </div>
+      <!-- //location -->
+      <div class="mb-3 text-start">
+        <label for="location" class="form-label">Location</label>
+        <input
+        name="listing[location]"
+        value="<%= listing.location %>"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="valid-feedback">
+        good!
+       </div>
+       <div class="invalid-feedback">
+        Enter a valid location
+       </div>
+      </div>
+        
+      <button class="btn add-btn float-start">Edit</button>
+      <br><br><br>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate") %>
+<%- include("../includes/flash.ejs") %>
+<div class="row">
+    <div class="col-8 offset-2">
+      <div class="mb-3 text-start">
+        <h3>Login</h3> 
+      </div>
+        <form method="POST" action="/login" novalidate class="needs-validation" style="margin-bottom: 105px;">
+            <div class="mb-3 text-start">
+                <label for="username" class="form-label">Username</label>
+                <input name="username" type="text" class="form-control" required />
+            </div>
+            <div class="mb-3 text-start">
+                <label for="password" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" required />
+            </div>
+            <div class="mb-3 text-end">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

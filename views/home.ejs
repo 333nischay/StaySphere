@@ -1,0 +1,69 @@
+<% layout("/layouts/boilerplate")  %>
+
+<%- include("./includes/flash.ejs") %>
+<style>
+    .feature-img {
+      height: 300px; /* Set a fixed height for the images */
+      object-fit: cover; /* Ensure the images maintain their aspect ratio */
+    }
+  </style>
+
+<div class="container mt-5">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to StaySphere</h1>
+    <p class="lead">Your ultimate destination for finding the perfect vacation rental.</p>
+    <hr class="my-4">
+    <p>Explore a wide range of listings, from cozy cottages to luxurious villas, and book your next stay with ease.</p>
+    <a class="btn btn-primary btn-lg" href="/listings" role="button">Browse Listings</a>
+  </div>
+
+  <div class="row mt-5" style="justify-content: center;">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://res.cloudinary.com/dlwkp6paj/image/upload/v1736473761/Screenshot_2025-01-10_071718_bl12rz.png" class="card-img-top" alt="Feature Image">
+        <div class="card-body">
+          <h5 class="card-title">Wide Range of Listings</h5>
+          <p class="card-text">Find the perfect place to stay from our extensive collection of vacation rentals.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://res.cloudinary.com/dlwkp6paj/image/upload/v1736473987/DALL_E_2025-01-10_07.22.45_-_A_modern_and_visually_appealing_graphic_showcasing_Trusted_Hosts_for_a_hotel_listing_website._The_image_features_a_sleek_and_professional_badge-styl_elccfw.webp" class="card-img-top" alt="Feature Image" style="height: 125px;  object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Trusted Hosts</h5>
+          <p class="card-text">Stay with confidence knowing that all our hosts are verified and trusted.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h2>About StaySphere</h2>
+      <p>StaySphere is a platform that connects travelers with hosts offering unique vacation rentals. Whether you're looking for a beachfront cottage, a mountain cabin, or a city apartment, we have something for everyone. Our mission is to make finding and booking vacation rentals easy and enjoyable.</p>
+    </div>
+  </div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <h2>Features</h2>
+        <ul style="list-style-type: none;">
+            <li>Extensive collection of vacation rentals</li>
+            <li>Verified and trusted hosts</li>
+            <li>24/7 customer support</li>
+        </ul>
+    </div>
+</div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h2>About Me</h2>
+      <p>Welcome to my website! Hello my name is <b>Nischay Sinha</b> and I'm an <b>undergrad Chemical engineering student at IIT BHU</b> passionate about building scalable software using MERN, Spring Boot, and Golang.
+         I enjoy transforming ideas into impactful digital solutions.
+         I hope you like this project and enjoy surfing through its features. <b>Kudos!</b></p>
+    </div>
+  </div>
+</div>
+
+<%- include("./includes/flash.ejs") %>
