@@ -4,49 +4,96 @@
       <button>Create New Listing</button>
     </form> -->
     <style>
-        .dropdown {
-          display: none;
-        }
-      @media (max-width: 768px) {
-        #filters {
-          justify-content: center;
-        }
+      .dropdown {
+        display: none;
       }
-      @media (max-width: 890px) {
-        .filter{
-          font-size: 0.3rem;
-        }
-        .filter > div > i {
-          font-size: 0.3rem;
-        }
-        .tax-switch, .form-check-label, .form-check-input {
-          font-size: 0.5rem;
-        }
+      .without-gst{
+        text-decoration: none;
       }
-  .dropdown-menu li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .dropdown-menu li div {
-    margin-right: 5px;
-  }
-
-  .dropdown-menu li p {
-    margin: 0;
-  }
-
-      @media(max-width: 842px) {
-        .filter{
-          display: none;
-        }
-       .dropdown {
-          display: block;
-        }
+      #filters {
+        justify-content: center;
+        align-items: center;
       }
-     </style>     
+      @media (max-width: 426px) {
+      .filter{
+        display: none;
+      }
+     .dropdown {
+        display: block;
+        width: 5rem;
+        left: 0px;
+      }
+      .dropdown button {
+        width: 5rem;
+        font-size: 0.5rem;
+      }
+      .dropdown ul {
+        width: 3rem;
+      }
+      .tax-switch {
+      font-size: 0.5rem;
+      width: 5.7rem;
+      justify-content: center;
+      align-items: center;
+      height: 1.4rem;
+      margin-bottom: auto; 
+      }
+
+      .tax-switch button{
+        margin-top: 1rem;
+      }
+
+    .form-switch.form-check-reverse .form-check-input {
+      margin-left: 6px;
+      font-size: 13px;
+      margin-top: 4px;
+      }
+    }
+    @media (max-width: 768px) {
+      #filters {
+        justify-content: center;
+        padding: 1rem 2rem;
+      }
+      .filter{
+        margin-left: 0rem;
+        margin-right: 1rem;
+      }
+      .tax-switch{
+        width: 5.7rem;
+        height: 1.7rem;
+      }
+      .form-switch.form-check-reverse .form-check-input {
+       margin-left: 8px;
+       font-size: 12px;
+     }
+    }
+    @media (max-width: 890px) {
+      .filter{
+        font-size: 0.3rem;
+      }
+      .filter > div > i {
+        font-size: 0.3rem;
+      }
+      .tax-switch, .form-check-label, .form-check-input {
+        font-size: 0.5rem;
+      }
+    }
+
+.dropdown-menu li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.dropdown-menu li div {
+  margin-right: 5px;
+}
+
+.dropdown-menu li p {
+  margin: 0;
+}
+   </style>  
 
         <div id="filters" class="d-flex flex-wrap justify-content-between">
           <!-- /* dropdown menu */ -->

@@ -1,3 +1,33 @@
+<style>
+  .show-img {
+    height: 250px;
+  }
+  @media(max-width: 426px) {
+    .show-img {
+      height: 150px;
+      width: 250px !important;
+    }
+    h3 {
+      font-size: 1.1rem;
+    }
+    ul{
+      font-size: 0.7rem;
+    }
+    .tax{
+      white-space: nowrap;
+    }
+    .noTax{
+      white-space: nowrap;
+    }
+    .form-check, .form-switch, .tax-inclusion {
+      margin-left: 40px !important;
+    }
+    .form-check, .form-switch, .tax-inclusion label {
+      white-space: nowrap;
+    }
+  }
+</style>
+
 <% layout("/layouts/boilerplate") %>
 <div class="container-fluid">
   <%- include("./includes/flash.ejs") %>
@@ -7,8 +37,8 @@
       <h3><%= listing.title %></h3>
       <br>
     </div>
-    <div class="card col-6 offset-2">
-      <img src="<%= listing.image.url%>" class="card-img-top show-img" alt="Image" style="object-fit: cover; width: 100%; height: 300px;" data-bs-toggle="modal" data-bs-target="#imageModal">
+    <div class="card col-7 offset-2">
+      <img src="<%= listing.image.url%>" class="card-img-top show-img" alt="Image" style="object-fit: cover; width: 100%;" data-bs-toggle="modal" data-bs-target="#imageModal">
       <div class="card-body">
         <% if(listing.owner && listing.owner.username) { %>
         <p class="card-text text-start"><b>Owned by: </b><i><%= listing.owner.username %></i></p>
